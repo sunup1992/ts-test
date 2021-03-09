@@ -1,5 +1,6 @@
 import express from 'express';
 import ejs from 'ejs';
+import * as path from 'path';
 import { Server } from 'typescript-rest';
 
 export class ApiServer {
@@ -9,9 +10,11 @@ export class ApiServer {
 
         Server.loadServices(this.app, 'controller/*', __dirname);
         
-        this.app.set("views", __dirname + "/public")
+        this.app.set("views", __dirname + "/views")
         this.app.set("view engine", "ejs")
         this.app.engine("html", ejs.renderFile)
+
+        this.app.use(express.static(path.join(__dirname, 'common')));
 
         this.app.get("/", function(req, res){
             res.render("index.html")
@@ -20,8 +23,7 @@ export class ApiServer {
         this.app.get("/page", function(req, res){
             res.render("page.html")
         })
-        // use
-        // this.app.use(express.static(path.join(__dirname, 'public')));
+
     }
 
     public async start() {

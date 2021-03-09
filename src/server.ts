@@ -2,7 +2,6 @@ import * as http from 'http';
 import express from 'express';
 import ejs from 'ejs';
 import * as path from 'path';
-import { urls } from './controller/urls'
 import { Server } from 'typescript-rest';
 
 export class ApiServer {

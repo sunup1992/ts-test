@@ -50,4 +50,17 @@ export function urls(app: express.Application) {
 
         res.render("load_cookie.ejs", cookie_data)
     })
+
+    app.get("/save_session", function(req, res){
+       
+        res.render("save_cookie.ejs")
+    })
+
+    app.get("/load_cookie", function(req, res){
+        let cookie_data = {
+            cookie1 : req.cookies.cookie1
+        }
+
+        res.render("load_cookie.ejs", cookie_data)
+    })
 }

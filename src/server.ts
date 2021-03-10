@@ -2,6 +2,7 @@ import express from 'express';
 import ejs from 'ejs';
 import * as path from 'path';
 import { Server } from 'typescript-rest';
+import { urls } from './router/urls'
 
 export class ApiServer {
     private readonly app: express.Application;
@@ -15,21 +16,8 @@ export class ApiServer {
         this.app.engine("ejs", ejs.renderFile)
 
         this.app.use(express.static(path.join(__dirname, 'common')));
-
-        this.app.get("/", function(req, res){
-            let date = new Date()
-            let param = {
-                "page_title": "default page",
-                "time": date
-            }
-
-            res.render("index.ejs", param)
-        })
-
-        this.app.get("/page", function(req, res){
-            res.render("page.ejs")
-        })
-
+        
+        urls(this.app)
     }
 
     public async start() {

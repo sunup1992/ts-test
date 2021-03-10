@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>API Test</title>
+    <script
+            src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/default.css"/>
+</head>
+<body>
+<h1 class="title"><%= page_title %></h1>
+<div><label>현재 시간</label> <%= time %> </div>
+<ul>
+    <li>
+        <button id="test-simple" type="button">Hello</button>
+    </li>
+    <li></li>
+    <li><a href="page">page table 이동</a></li>
+</ul>
+
+<script>
+    $('#test-simple').click( async e => {
+        console.log("???")
+        let result = await $.get('/test-api', function (data) {
+            alert(data);
+        });
+    });
+</script>
+</body>
+</html>

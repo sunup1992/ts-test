@@ -12,16 +12,22 @@ export class ApiServer {
         
         this.app.set("views", __dirname + "/views")
         this.app.set("view engine", "ejs")
-        this.app.engine("html", ejs.renderFile)
+        this.app.engine("ejs", ejs.renderFile)
 
         this.app.use(express.static(path.join(__dirname, 'common')));
 
         this.app.get("/", function(req, res){
-            res.render("index.html")
+            let date = new Date()
+            let param = {
+                "page_title": "default page",
+                "time": date
+            }
+
+            res.render("index.ejs", param)
         })
 
         this.app.get("/page", function(req, res){
-            res.render("page.html")
+            res.render("page.ejs")
         })
 
     }

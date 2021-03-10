@@ -17,8 +17,22 @@
         <button id="test-simple" type="button">Hello</button>
     </li>
     <li></li>
-    <li><a href="page">page table 이동</a></li>
+    <li><a href="page?first_data=dlwlrma&second_data=rollin">page table 이동</a></li>
 </ul>
+
+<form action="page" method="get">
+    이름 : <input type="text" name="first_data"/> <br>
+    제목 : <input type="text" name="second_data"/> <br>
+    <button type="submit">get submit</button>
+</form>
+
+<br>
+<div>POST</div>
+<form action="page" method="post">
+    이름 : <input type="text" name="first_data"/> <br>
+    제목 : <input type="text" name="second_data"/> <br>
+    <button type="submit">post submit</button>
+</form>
 
 <script>
     $('#test-simple').click( async e => {

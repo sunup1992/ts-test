@@ -1,4 +1,7 @@
 import express from 'express';
+import bodyParser from 'body-parser'
+
+let urlEncodedParser = bodyParser.urlencoded({extended : false })
 
 export function urls(app: express.Application) {
     app.get("/", function(req, res){
@@ -12,6 +15,20 @@ export function urls(app: express.Application) {
     })
 
     app.get("/page", function(req, res){
-        res.render("page.ejs")
+        let param = {
+            name : req.query.first_data,
+            title_name : req.query.second_data
+        }
+        
+        res.render("page.ejs", param)
+    })
+
+    app.post("/page", urlEncodedParser, function(req, res){
+        let param = {
+            name : req.body.first_data,
+            title_name : req.body.second_data
+        }
+
+        res.render("page.ejs", param)
     })
 }

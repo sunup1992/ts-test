@@ -31,4 +31,23 @@ export function urls(app: express.Application) {
 
         res.render("page.ejs", param)
     })
+
+    app.get("/save_cookie", function(req, res){
+        var op = {
+            // 쿠키 유효시간 : 이건 1시간
+            maxAge : 60 * 60
+        }
+
+        res.cookie("cookie1", "test cookie", op)
+
+        res.render("save_cookie.ejs")
+    })
+
+    app.get("/load_cookie", function(req, res){
+        let cookie_data = {
+            cookie1 : req.cookies.cookie1
+        }
+
+        res.render("load_cookie.ejs", cookie_data)
+    })
 }

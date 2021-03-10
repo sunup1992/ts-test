@@ -3,6 +3,8 @@ import ejs from 'ejs';
 import * as path from 'path';
 import { Server } from 'typescript-rest';
 import { urls } from './router/urls'
+import cookieParser from 'cookie-parser'
+
 
 export class ApiServer {
     private readonly app: express.Application;
@@ -16,6 +18,8 @@ export class ApiServer {
         this.app.engine("ejs", ejs.renderFile)
 
         this.app.use(express.static(path.join(__dirname, 'common')));
+        
+        this.app.use(cookieParser())
         
         urls(this.app)
     }
